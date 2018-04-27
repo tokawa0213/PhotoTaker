@@ -1,32 +1,32 @@
 package jp.ac.titech.itpro.sdl.phototaker;
-
+import android.graphics.Bitmap;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
+import android.widget.ImageView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
-
+import android.provider.MediaStore;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private final static int REQ_PHOTO = 1234;
     private Bitmap photoImg = null;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Button photoButton = findViewById(R.id.photo_button);
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, REQ_PHOTO);
                 // TODO: You should setup appropriate parameters for the intent
                 PackageManager packageManager = getPackageManager();
                 List activities = packageManager
@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         switch (reqCode) {
         case REQ_PHOTO:
             if (resCode == RESULT_OK) {
+                photoImg = (Bitmap) data.getExtras().get("data");
+                showPhoto();
                 // TODO: You should implement the code that retrieve a bitmap image
             }
             break;
