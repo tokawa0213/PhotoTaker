@@ -6,6 +6,21 @@
     android:padding="@dimen/activity_padding"
     tools:context=".MainActivity">
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tweettextsq"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:visibility="gone"
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/tweettext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tweet text" />
+
+    </android.support.design.widget.TextInputLayout>
+
     <ImageView
         android:id="@+id/photo_view"
         android:layout_width="match_parent"
@@ -13,11 +28,33 @@
         android:layout_weight="1"
         android:contentDescription="@string/photo_view_description"/>
 
-    <Button
-        android:id="@+id/photo_button"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/widget_margin"
-        android:text="@string/photo_button_label"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/photo_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TAKE PHOTO" />
+
+        <Button
+            android:id="@+id/browse_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BROWSE" />
+
+        <Button
+            android:id="@+id/decorate_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="DECORATE" />
+
+    </LinearLayout>
+
 
 </LinearLayout>
